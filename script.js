@@ -15,9 +15,9 @@ function activateTab(tab) {
 // Obsługa karty
 function setupTab(tab) {
 
+    // Kliknięcie karty
     tab.addEventListener("click", (event) => {
 
-        // Kliknięcie X nie aktywuje karty
         if (event.target.classList.contains("close-tab")) {
             return;
         }
@@ -26,34 +26,29 @@ function setupTab(tab) {
     });
 
 
-    // Zamykanie karty
+    // Przycisk zamykania
     const closeButton = tab.querySelector(".close-tab");
 
-    if (closeButton) {
+    closeButton.addEventListener("click", (event) => {
 
-        closeButton.addEventListener("click", (event) => {
+        event.stopPropagation();
 
-            event.stopPropagation();
+        const wasActive = tab.classList.contains("active");
 
-            const wasActive = tab.classList.contains("active");
+        tab.remove();
 
-            tab.remove();
+        if (wasActive) {
 
-            // Jeśli zamknięto aktywną kartę,
-            // aktywuj ostatnią dostępną
-            if (wasActive) {
+            const remainingTabs =
+                document.querySelectorAll(".tab");
 
-                const remainingTabs =
-                    document.querySelectorAll(".tab");
-
-                if (remainingTabs.length > 0) {
-                    activateTab(
-                        remainingTabs[remainingTabs.length - 1]
-                    );
-                }
+            if (remainingTabs.length > 0) {
+                activateTab(
+                    remainingTabs[remainingTabs.length - 1]
+                );
             }
-        });
-    }
+        }
+    });
 }
 
 
@@ -63,7 +58,7 @@ document.querySelectorAll(".tab").forEach(tab => {
 });
 
 
-// Tworzenie nowej karty
+// Nowa karta
 newTabButton.addEventListener("click", () => {
 
     const newTab = document.createElement("div");
