@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #101a35;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Pasek kart */
+.tabs {
+    height: 58px;
+    width: 100%;
+
+    background: #080f22;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+    padding: 0 10px;
+}
+
+/* Karta */
+.tab {
+    height: 40px;
+    padding: 0 20px;
+
+    background: #0b1228;
+    border: 1px solid #172344;
+    border-radius: 10px 10px 0 0;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+/* Aktywna karta */
+.tab.active {
+    height: 46px;
+
+    background: #29477f;
+    border-color: #3c65a8;
+
+    transform: translateY(3px);
+}
+
+/* Przycisk + */
+.new-tab {
+    border: none;
+    background: transparent;
+
+    color: white;
+    font-size: 24px;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.new-tab:hover {
+    transform: scale(1.15);
+}
+
+/* Główna zawartość */
+main {
+    width: 100%;
+    min-height: calc(100vh - 58px);
+}
