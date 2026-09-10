@@ -2,6 +2,8 @@ const tabsContainer = document.querySelector(".tabs");
 const newTabButton = document.querySelector(".new-tab");
 
 const addressInput = document.querySelector("#address-input");
+const googleInput = document.querySelector("#google-input");
+
 const backButton = document.querySelector("#back");
 const forwardButton = document.querySelector("#forward");
 const reloadButton = document.querySelector("#reload");
@@ -12,6 +14,7 @@ const reloadButton = document.querySelector("#reload");
 // =========================
 
 function activateTab(tab) {
+
     document.querySelectorAll(".tab").forEach(t => {
         t.classList.remove("active");
     });
@@ -48,9 +51,11 @@ function setupTab(tab) {
                 document.querySelectorAll(".tab");
 
             if (remainingTabs.length > 0) {
+
                 activateTab(
                     remainingTabs[remainingTabs.length - 1]
                 );
+
             }
         }
     });
@@ -58,12 +63,16 @@ function setupTab(tab) {
 
 
 // Istniejąca karta
+
 document.querySelectorAll(".tab").forEach(tab => {
     setupTab(tab);
 });
 
 
-// Nowa karta
+// =========================
+// NOWA KARTA
+// =========================
+
 newTabButton.addEventListener("click", () => {
 
     const newTab = document.createElement("div");
@@ -78,18 +87,49 @@ newTabButton.addEventListener("click", () => {
 
     setupTab(newTab);
 
-    tabsContainer.insertBefore(newTab, newTabButton);
+    tabsContainer.insertBefore(
+        newTab,
+        newTabButton
+    );
 
     activateTab(newTab);
 
-    // Czyścimy pasek wyszukiwania
     addressInput.value = "";
-    addressInput.focus();
+    googleInput.value = "";
+
+    googleInput.focus();
 });
 
 
 // =========================
-// WYSZUKIWANIE
+// GOOGLE
+// =========================
+
+function googleSearch() {
+
+    const value = googleInput.value.trim();
+
+    if (value === "") {
+        return;
+    }
+
+    window.location.href =
+        "https://www.google.com/search?q=" +
+        encodeURIComponent(value);
+}
+
+
+googleInput.addEventListener("keydown", (event) => {
+
+    if (event.key === "Enter") {
+        googleSearch();
+    }
+
+});
+
+
+// =========================
+// PASEK ADRESU
 // =========================
 
 function searchOrOpen() {
@@ -101,36 +141,35 @@ function searchOrOpen() {
     }
 
 
-    // Jeśli wygląda jak adres
     if (
         value.startsWith("http://") ||
         value.startsWith("https://")
     ) {
+
         window.location.href = value;
+
         return;
     }
 
 
-    // Jeśli wygląda jak domena
     if (
         value.includes(".") &&
         !value.includes(" ")
     ) {
-        window.location.href = "https://" + value;
+
+        window.location.href =
+            "https://" + value;
+
         return;
     }
 
 
-    // Zwykły tekst → Google
-    const searchUrl =
+    window.location.href =
         "https://www.google.com/search?q=" +
         encodeURIComponent(value);
-
-    window.location.href = searchUrl;
 }
 
 
-// Enter w pasku
 addressInput.addEventListener("keydown", (event) => {
 
     if (event.key === "Enter") {
@@ -144,19 +183,16 @@ addressInput.addEventListener("keydown", (event) => {
 // PRZYCISKI
 // =========================
 
-// Wstecz
 backButton.addEventListener("click", () => {
     history.back();
 });
 
 
-// Dalej
 forwardButton.addEventListener("click", () => {
     history.forward();
 });
 
 
-// Odśwież
 reloadButton.addEventListener("click", () => {
     location.reload();
 });
