@@ -11,9 +11,35 @@ body {
 }
 
 body {
-    background: #101a35;
     color: white;
     font-family: Arial, sans-serif;
+
+    background-color: #101a35;
+
+    /* Gradient + siatka */
+    background-image:
+        linear-gradient(
+            to bottom,
+            #3f72c4 0%,
+            #1c315f 35%,
+            #101a35 100%
+        ),
+        linear-gradient(
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        100% 100%,
+        40px 40px,
+        40px 40px;
+
+    background-attachment: fixed;
 }
 
 /* Pasek kart */
