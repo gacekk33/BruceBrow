@@ -1,8 +1,16 @@
 const tabsContainer = document.querySelector(".tabs");
 const newTabButton = document.querySelector(".new-tab");
 
+const addressInput = document.querySelector("#address-input");
+const backButton = document.querySelector("#back");
+const forwardButton = document.querySelector("#forward");
+const reloadButton = document.querySelector("#reload");
 
-// Aktywowanie karty
+
+// =========================
+// KARTY
+// =========================
+
 function activateTab(tab) {
     document.querySelectorAll(".tab").forEach(t => {
         t.classList.remove("active");
@@ -12,10 +20,8 @@ function activateTab(tab) {
 }
 
 
-// Obsługa karty
 function setupTab(tab) {
 
-    // Kliknięcie karty
     tab.addEventListener("click", (event) => {
 
         if (event.target.classList.contains("close-tab")) {
@@ -26,7 +32,6 @@ function setupTab(tab) {
     });
 
 
-    // Przycisk zamykania
     const closeButton = tab.querySelector(".close-tab");
 
     closeButton.addEventListener("click", (event) => {
@@ -52,7 +57,7 @@ function setupTab(tab) {
 }
 
 
-// Istniejące karty
+// Istniejąca karta
 document.querySelectorAll(".tab").forEach(tab => {
     setupTab(tab);
 });
@@ -76,4 +81,82 @@ newTabButton.addEventListener("click", () => {
     tabsContainer.insertBefore(newTab, newTabButton);
 
     activateTab(newTab);
+
+    // Czyścimy pasek wyszukiwania
+    addressInput.value = "";
+    addressInput.focus();
+});
+
+
+// =========================
+// WYSZUKIWANIE
+// =========================
+
+function searchOrOpen() {
+
+    const value = addressInput.value.trim();
+
+    if (value === "") {
+        return;
+    }
+
+
+    // Jeśli wygląda jak adres
+    if (
+        value.startsWith("http://") ||
+        value.startsWith("https://")
+    ) {
+        window.location.href = value;
+        return;
+    }
+
+
+    // Jeśli wygląda jak domena
+    if (
+        value.includes(".") &&
+        !value.includes(" ")
+    ) {
+        window.location.href = "https://" + value;
+        return;
+    }
+
+
+    // Zwykły tekst → Google
+    const searchUrl =
+        "https://www.google.com/search?q=" +
+        encodeURIComponent(value);
+
+    window.location.href = searchUrl;
+}
+
+
+// Enter w pasku
+addressInput.addEventListener("keydown", (event) => {
+
+    if (event.key === "Enter") {
+        searchOrOpen();
+    }
+
+});
+
+
+// =========================
+// PRZYCISKI
+// =========================
+
+// Wstecz
+backButton.addEventListener("click", () => {
+    history.back();
+});
+
+
+// Dalej
+forwardButton.addEventListener("click", () => {
+    history.forward();
+});
+
+
+// Odśwież
+reloadButton.addEventListener("click", () => {
+    location.reload();
 });
