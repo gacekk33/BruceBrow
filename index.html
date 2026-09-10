@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -11,7 +12,7 @@
 
 <body>
 
-    <!-- Pasek kart -->
+    <!-- Karty -->
     <div class="tabs">
 
         <div class="tab active">
@@ -25,25 +26,40 @@
     </div>
 
 
-    <!-- Pasek adresu -->
-    <div class="address-bar">
+    <!-- Pasek przeglądarki -->
+    <div class="browser-bar">
 
-        <button class="nav-button">←</button>
+        <div class="navigation">
 
-        <button class="nav-button">→</button>
+            <button class="nav-button" id="back">←</button>
 
-        <button class="nav-button">⟳</button>
+            <button class="nav-button" id="forward">→</button>
 
-        <div class="search-bar">
-            <span>Wyszukaj lub wpisz adres</span>
+            <button class="nav-button" id="reload">⟳</button>
+
         </div>
+
+
+        <div class="address-container">
+
+            <span class="address-icon">🔍</span>
+
+            <input
+                type="text"
+                id="address-input"
+                placeholder="Wyszukaj lub wpisz adres"
+                autocomplete="off"
+            >
+
+        </div>
+
 
         <button class="menu-button">⋮</button>
 
     </div>
 
 
-    <!-- Główna zawartość -->
+    <!-- Zawartość -->
     <main>
     </main>
 
@@ -52,3 +68,4 @@
 
 </body>
 </html>
+```
