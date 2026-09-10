@@ -68,11 +68,13 @@ body {
 ========================= */
 
 .tab {
-    height: 46px;
+    flex: 0 0 190px;
 
     width: 190px;
     min-width: 190px;
     max-width: 190px;
+
+    height: 46px;
 
     padding: 0 13px;
 
@@ -88,18 +90,24 @@ body {
     overflow: hidden;
 
     transition:
-        width 0.25s ease,
-        min-width 0.25s ease,
-        max-width 0.25s ease,
-        height 0.25s ease,
+        flex-basis 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        min-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         background 0.25s ease,
-        border-color 0.25s ease;
+        border-color 0.25s ease,
+        padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
-/* Aktywna karta */
+/* =========================
+   AKTYWNA KARTA
+========================= */
 
 .tab.active {
+    flex-basis: 190px;
+
     width: 190px;
     min-width: 190px;
     max-width: 190px;
@@ -113,9 +121,13 @@ body {
 }
 
 
-/* Nieaktywna karta */
+/* =========================
+   NIEAKTYWNA KARTA
+========================= */
 
 .tab:not(.active) {
+    flex-basis: 52px;
+
     width: 52px;
     min-width: 52px;
     max-width: 52px;
@@ -131,18 +143,29 @@ body {
 /* Ukrywanie nazwy */
 
 .tab:not(.active) .tab-title {
-    display: none;
+    opacity: 0;
+    width: 0;
+    margin-left: 0;
+
+    pointer-events: none;
 }
 
 
 /* Ukrywanie X */
 
 .tab:not(.active) .close-tab {
-    display: none;
+    opacity: 0;
+    width: 0;
+    margin-left: 0;
+    padding: 0;
+
+    pointer-events: none;
 }
 
 
-/* Ikona */
+/* =========================
+   IKONA KARTY
+========================= */
 
 .tab-icon {
     display: flex;
@@ -158,19 +181,32 @@ body {
 }
 
 
-/* Nazwa */
+/* =========================
+   NAZWA KARTY
+========================= */
 
 .tab-title {
     margin-left: 8px;
+
+    width: auto;
 
     white-space: nowrap;
 
     overflow: hidden;
     text-overflow: ellipsis;
+
+    opacity: 1;
+
+    transition:
+        opacity 0.15s ease,
+        width 0.3s ease,
+        margin-left 0.3s ease;
 }
 
 
-/* X */
+/* =========================
+   PRZYCISK X
+========================= */
 
 .close-tab {
     margin-left: auto;
@@ -195,7 +231,13 @@ body {
 
     flex-shrink: 0;
 
-    transition: background 0.2s ease;
+    opacity: 1;
+
+    transition:
+        opacity 0.15s ease,
+        width 0.3s ease,
+        margin-left 0.3s ease,
+        background 0.2s ease;
 }
 
 .close-tab:hover {
