@@ -16,28 +16,28 @@ body {
 
     background-color: #101a35;
 
-    /* Gradient + siatka */
+    /* Siatka + gradient */
     background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+        ),
         linear-gradient(
             to bottom,
             #3f72c4 0%,
             #1c315f 35%,
             #101a35 100%
-        ),
-        linear-gradient(
-            rgba(255, 255, 255, 0.035) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.035) 1px,
-            transparent 1px
         );
 
     background-size:
-        100% 100%,
         40px 40px,
-        40px 40px;
+        40px 40px,
+        100% 100%;
 
     background-attachment: fixed;
 }
