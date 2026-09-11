@@ -417,9 +417,42 @@ body {
 ========================= */
 
 main {
+    position: relative;
+
     width: 100%;
     min-height: calc(100vh - 132px);
 }
+
+
+/* =========================
+   LOGO BRUCE
+========================= */
+
+.bruce-logo {
+    position: absolute;
+
+    top: 22px;
+    left: 28px;
+
+    width: 110px;
+    height: auto;
+
+    object-fit: contain;
+
+    z-index: 10;
+
+    user-select: none;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.bruce-logo:hover {
+    transform: scale(1.04);
+}
+
+
 /* =========================
    NOWA KARTA
 ========================= */
