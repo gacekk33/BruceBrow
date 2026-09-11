@@ -16,7 +16,6 @@ body {
 
     background-color: #101a35;
 
-    /* Siatka + gradient */
     background-image:
         linear-gradient(
             rgba(255, 255, 255, 0.04) 1px,
@@ -79,6 +78,7 @@ body {
     padding: 0 13px;
 
     background: #0b1228;
+
     border: 1px solid #172344;
     border-radius: 11px 11px 0 0;
 
@@ -89,15 +89,27 @@ body {
 
     overflow: hidden;
 
+    transform: translateY(0);
+
     transition:
-        flex-basis 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-        width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-        min-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-        max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        flex-basis 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+        width 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+        min-width 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+        max-width 0.38s cubic-bezier(0.4, 0, 0.2, 1),
         height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         background 0.25s ease,
         border-color 0.25s ease,
-        padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        padding 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.25s ease;
+}
+
+
+/* Hover */
+
+.tab:hover {
+    background: #101a35;
+    border-color: #263a68;
 }
 
 
@@ -118,6 +130,13 @@ body {
     border-color: #3c65a8;
 
     transform: translateY(3px);
+
+    box-shadow:
+        0 -4px 18px rgba(40, 90, 170, 0.12);
+}
+
+.tab.active:hover {
+    background: #31558f;
 }
 
 
@@ -140,31 +159,8 @@ body {
 }
 
 
-/* Ukrywanie nazwy */
-
-.tab:not(.active) .tab-title {
-    opacity: 0;
-    width: 0;
-    margin-left: 0;
-
-    pointer-events: none;
-}
-
-
-/* Ukrywanie X */
-
-.tab:not(.active) .close-tab {
-    opacity: 0;
-    width: 0;
-    margin-left: 0;
-    padding: 0;
-
-    pointer-events: none;
-}
-
-
 /* =========================
-   IKONA KARTY
+   IKONA
 ========================= */
 
 .tab-icon {
@@ -178,11 +174,19 @@ body {
     font-weight: bold;
 
     white-space: nowrap;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.2s ease;
+}
+
+.tab:hover .tab-icon {
+    transform: scale(1.08);
 }
 
 
 /* =========================
-   NAZWA KARTY
+   NAZWA
 ========================= */
 
 .tab-title {
@@ -198,9 +202,19 @@ body {
     opacity: 1;
 
     transition:
-        opacity 0.15s ease,
-        width 0.3s ease,
-        margin-left 0.3s ease;
+        opacity 0.18s ease,
+        width 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+        margin-left 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab:not(.active) .tab-title {
+    opacity: 0;
+
+    width: 0;
+
+    margin-left: 0;
+
+    pointer-events: none;
 }
 
 
@@ -215,7 +229,7 @@ body {
     height: 27px;
 
     border: none;
-    border-radius: 6px;
+    border-radius: 7px;
 
     background: transparent;
     color: white;
@@ -234,14 +248,28 @@ body {
     opacity: 1;
 
     transition:
-        opacity 0.15s ease,
-        width 0.3s ease,
-        margin-left 0.3s ease,
-        background 0.2s ease;
+        opacity 0.18s ease,
+        width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 .close-tab:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.13);
+
+    transform: scale(1.08);
+}
+
+.tab:not(.active) .close-tab {
+    opacity: 0;
+
+    width: 0;
+
+    margin-left: 0;
+    padding: 0;
+
+    pointer-events: none;
 }
 
 
@@ -263,11 +291,22 @@ body {
 
     padding: 8px;
 
-    transition: transform 0.2s ease;
+    border-radius: 9px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .new-tab:hover {
-    transform: scale(1.15);
+    transform: scale(1.12);
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.new-tab:active {
+    transform: scale(0.94);
 }
 
 
@@ -289,6 +328,8 @@ body {
     background: rgba(8, 15, 34, 0.82);
 
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(10px);
 }
 
 
@@ -315,6 +356,7 @@ body {
     border-radius: 50%;
 
     background: transparent;
+
     color: rgba(255, 255, 255, 0.8);
 
     font-size: 20px;
@@ -327,13 +369,22 @@ body {
 
     transition:
         background 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .nav-button:hover,
 .menu-button:hover {
     background: rgba(255, 255, 255, 0.10);
+
     color: white;
+
+    transform: scale(1.06);
+}
+
+.nav-button:active,
+.menu-button:active {
+    transform: scale(0.92);
 }
 
 
@@ -354,20 +405,33 @@ body {
     background: rgba(255, 255, 255, 0.09);
 
     border: 1px solid rgba(255, 255, 255, 0.08);
+
     border-radius: 21px;
 
     transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+}
+
+.address-container:hover {
+    background: rgba(255, 255, 255, 0.11);
 }
 
 .address-container:focus-within {
     background: rgba(255, 255, 255, 0.13);
-    border-color: rgba(255, 255, 255, 0.18);
+
+    border-color: rgba(255, 255, 255, 0.20);
+
+    box-shadow:
+        0 0 0 3px rgba(80, 130, 220, 0.10);
 }
 
 
-/* Ikona wyszukiwania */
+/* =========================
+   IKONA WYSZUKIWANIA
+========================= */
 
 .address-icon {
     margin-right: 10px;
@@ -375,10 +439,22 @@ body {
     font-size: 15px;
 
     opacity: 0.65;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.address-container:focus-within .address-icon {
+    opacity: 0.9;
+
+    transform: scale(1.08);
 }
 
 
-/* Input */
+/* =========================
+   INPUT
+========================= */
 
 #address-input {
     width: 100%;
@@ -398,6 +474,13 @@ body {
 
 #address-input::placeholder {
     color: rgba(255, 255, 255, 0.55);
+
+    transition:
+        opacity 0.2s ease;
+}
+
+#address-input:focus::placeholder {
+    opacity: 0.35;
 }
 
 
@@ -420,6 +503,7 @@ main {
     position: relative;
 
     width: 100%;
+
     min-height: calc(100vh - 132px);
 }
 
@@ -443,13 +527,44 @@ main {
 
     user-select: none;
 
+    opacity: 0;
+
+    animation:
+        logoAppear 0.7s cubic-bezier(0.22, 1, 0.36, 1)
+        0.1s forwards;
+
     transition:
         transform 0.25s ease,
-        opacity 0.25s ease;
+        filter 0.25s ease;
 }
 
 .bruce-logo:hover {
     transform: scale(1.04);
+
+    filter:
+        drop-shadow(0 5px 15px rgba(0, 0, 0, 0.25));
+}
+
+
+/* Animacja logo */
+
+@keyframes logoAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-10px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
 
@@ -459,6 +574,7 @@ main {
 
 .new-tab-page {
     width: 100%;
+
     min-height: calc(100vh - 132px);
 
     display: flex;
@@ -469,7 +585,9 @@ main {
 }
 
 
-/* Główny panel */
+/* =========================
+   PANEL GOOGLE
+========================= */
 
 .google-card {
     width: 680px;
@@ -495,19 +613,53 @@ main {
     align-items: center;
     justify-content: center;
 
+    opacity: 0;
+
+    animation:
+        googleCardAppear 0.65s cubic-bezier(0.22, 1, 0.36, 1)
+        0.05s forwards;
+
     transition:
-        transform 0.25s ease,
-        background 0.25s ease;
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.25s ease,
+        box-shadow 0.3s ease;
 }
 
 .google-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 
     background: rgba(8, 15, 34, 0.68);
+
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.35);
 }
 
 
-/* Google */
+/* Animacja panelu */
+
+@keyframes googleCardAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================
+   GOOGLE
+========================= */
 
 .google-logo {
     font-size: 64px;
@@ -517,10 +669,22 @@ main {
     letter-spacing: -3px;
 
     margin-bottom: 38px;
+
+    user-select: none;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.google-card:hover .google-logo {
+    transform: translateY(-2px);
 }
 
 
-/* Wyszukiwarka Google */
+/* =========================
+   WYSZUKIWARKA GOOGLE
+========================= */
 
 .google-search {
     width: 100%;
@@ -538,9 +702,14 @@ main {
     border-radius: 31px;
 
     transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+}
+
+.google-search:hover {
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .google-search:focus-within {
@@ -550,8 +719,12 @@ main {
 
     box-shadow:
         0 0 0 4px rgba(80, 130, 220, 0.13);
+
+    transform: translateY(-1px);
 }
 
+
+/* Ikona */
 
 .google-search span {
     font-size: 18px;
@@ -559,10 +732,22 @@ main {
     opacity: 0.65;
 
     margin-right: 13px;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.google-search:focus-within span {
+    opacity: 0.9;
+
+    transform: scale(1.08);
 }
 
 
-/* Input */
+/* =========================
+   INPUT GOOGLE
+========================= */
 
 #google-input {
     width: 100%;
@@ -580,7 +765,37 @@ main {
     font-family: Arial, sans-serif;
 }
 
-
 #google-input::placeholder {
     color: rgba(255, 255, 255, 0.52);
+
+    transition:
+        opacity 0.2s ease;
+}
+
+#google-input:focus::placeholder {
+    opacity: 0.3;
+}
+
+
+/* =========================
+   PŁYNNOŚĆ
+========================= */
+
+button,
+input {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* Szacunek dla ustawień redukcji animacji */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
