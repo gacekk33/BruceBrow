@@ -1,917 +1,1513 @@
-```css
 * {
-    box-sizing: border-box;
-}
+  box-sizing: border-box;
+  }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
+margin: 0;
+padding: 0;
+width: 100%;
+min-height: 100%;
 }
 
 body {
-    color: white;
-    font-family: Arial, sans-serif;
+color: white;
+font-family: Arial, sans-serif;
 
-    background-color: #101a35;
+```
+background-color: #101a35;
 
-    background-image:
-        linear-gradient(
-            rgba(255, 255, 255, 0.04) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.04) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            to bottom,
-            #3f72c4 0%,
-            #1c315f 35%,
-            #101a35 100%
-        );
+background-image:
+    linear-gradient(
+        rgba(255, 255, 255, 0.04) 1px,
+        transparent 1px
+    ),
+    linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.04) 1px,
+        transparent 1px
+    ),
+    linear-gradient(
+        to bottom,
+        #3f72c4 0%,
+        #1c315f 35%,
+        #101a35 100%
+    );
 
-    background-size:
-        40px 40px,
-        40px 40px,
-        100% 100%;
+background-size:
+    40px 40px,
+    40px 40px,
+    100% 100%;
 
-    background-attachment: fixed;
+background-attachment: fixed;
+
+overflow-x: hidden;
+```
+
 }
 
-
 /* =========================
-   PASEK KART
+PASEK KART
 ========================= */
 
 .tabs {
-    height: 68px;
-    width: 100%;
+height: 68px;
+width: 100%;
 
-    background: #080f22;
+```
+background:
+    linear-gradient(
+        to bottom,
+        rgba(8, 15, 34, 0.98),
+        rgba(6, 12, 28, 0.98)
+    );
 
-    display: flex;
-    align-items: center;
+display: flex;
+align-items: center;
 
-    gap: 7px;
-    padding: 0 12px;
+gap: 7px;
+padding: 0 12px;
 
-    overflow: hidden;
+overflow: hidden;
+
+border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+
+box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.16);
+
+position: relative;
+z-index: 20;
+```
+
 }
 
-
 /* =========================
-   KARTA
+KARTA
 ========================= */
 
 .tab {
-    flex: 0 0 190px;
+flex: 0 0 190px;
 
-    width: 190px;
-    min-width: 190px;
-    max-width: 190px;
+```
+width: 190px;
+min-width: 190px;
+max-width: 190px;
 
-    height: 46px;
+height: 46px;
 
-    padding: 0 13px;
+padding: 0 13px;
 
-    background: #0b1228;
+background:
+    linear-gradient(
+        145deg,
+        #0e1831,
+        #0a1125
+    );
 
-    border: 1px solid #172344;
-    border-radius: 11px 11px 0 0;
+border: 1px solid #172344;
 
-    display: flex;
-    align-items: center;
+border-radius: 12px 12px 5px 5px;
 
-    cursor: pointer;
+display: flex;
+align-items: center;
 
-    overflow: hidden;
+cursor: pointer;
 
-    transform: translateY(0);
+overflow: hidden;
 
-    transition:
-        flex-basis 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-        width 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-        min-width 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-        max-width 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-        height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        background 0.25s ease,
-        border-color 0.25s ease,
-        padding 0.38s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 0.25s ease;
+position: relative;
+
+transform: translateY(0);
+
+box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.14);
+
+transition:
+    flex-basis 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    min-width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.25s ease,
+    border-color 0.25s ease,
+    padding 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+```
+
+}
+
+/* subtelny błysk na górze */
+
+.tab::before {
+content: "";
+
+```
+position: absolute;
+
+top: 0;
+left: 14px;
+right: 14px;
+
+height: 1px;
+
+background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.12),
+        transparent
+    );
+
+opacity: 0;
+
+transition:
+    opacity 0.25s ease;
+```
+
+}
+
+.tab:hover::before,
+.tab.active::before {
+opacity: 1;
 }
 
 .tab:hover {
-    background: #101a35;
-    border-color: #263a68;
+background:
+linear-gradient(
+145deg,
+#121d3a,
+#0d162d
+);
+
+```
+border-color: #263a68;
+
+box-shadow:
+    0 5px 16px rgba(0, 0, 0, 0.18);
+```
+
 }
 
-
 /* =========================
-   AKTYWNA KARTA
+AKTYWNA KARTA
 ========================= */
 
 .tab.active {
-    flex-basis: 190px;
+flex-basis: 190px;
 
-    width: 190px;
-    min-width: 190px;
-    max-width: 190px;
+```
+width: 190px;
+min-width: 190px;
+max-width: 190px;
 
-    height: 52px;
+height: 53px;
 
-    background: #29477f;
+background:
+    linear-gradient(
+        145deg,
+        #31558f,
+        #29477f
+    );
 
-    border-color: #3c65a8;
+border-color: #466fb3;
 
-    transform: translateY(3px);
+transform: translateY(3px);
 
-    box-shadow:
-        0 -4px 18px rgba(40, 90, 170, 0.14);
+box-shadow:
+    0 -4px 18px rgba(40, 90, 170, 0.15),
+    0 7px 18px rgba(0, 0, 0, 0.20);
+```
+
 }
 
 .tab.active:hover {
-    background: #31558f;
+background:
+linear-gradient(
+145deg,
+#385f9d,
+#2d4f8c
+);
+
+```
+border-color: #527fc8;
+
+box-shadow:
+    0 -5px 20px rgba(55, 105, 190, 0.18),
+    0 8px 20px rgba(0, 0, 0, 0.22);
+```
+
 }
 
-
 /* =========================
-   NIEAKTYWNA KARTA
+NIEAKTYWNA KARTA
 ========================= */
 
 .tab:not(.active) {
-    flex-basis: 52px;
+flex-basis: 52px;
 
-    width: 52px;
-    min-width: 52px;
-    max-width: 52px;
+```
+width: 52px;
+min-width: 52px;
+max-width: 52px;
 
-    padding: 0;
+padding: 0;
 
-    justify-content: center;
+justify-content: center;
 
-    overflow: hidden;
+overflow: hidden;
+
+box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.12);
+```
+
 }
 
-
 /* =========================
-   IKONA KARTY
+IKONA KARTY
 ========================= */
 
 .tab-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+display: flex;
+align-items: center;
+justify-content: center;
 
-    flex-shrink: 0;
+```
+flex-shrink: 0;
 
-    width: 26px;
+width: 26px;
 
-    font-size: 14px;
-    font-weight: bold;
+font-size: 14px;
+font-weight: bold;
 
-    white-space: nowrap;
+letter-spacing: 1px;
 
-    transition:
-        transform 0.25s ease,
-        opacity 0.2s ease;
+white-space: nowrap;
+
+opacity: 0.78;
+
+transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+```
+
 }
 
 .tab:hover .tab-icon {
-    transform: scale(1.08);
+transform: scale(1.08);
+
+```
+opacity: 1;
+```
+
 }
 
+.tab.active .tab-icon {
+opacity: 1;
+}
 
 /* =========================
-   NAZWA KARTY
+NAZWA KARTY
 ========================= */
 
 .tab-title {
-    margin-left: 8px;
+margin-left: 8px;
 
-    width: auto;
+```
+width: auto;
 
-    white-space: nowrap;
+white-space: nowrap;
 
-    overflow: hidden;
-    text-overflow: ellipsis;
+overflow: hidden;
+text-overflow: ellipsis;
 
-    opacity: 1;
+opacity: 1;
 
-    transition:
-        opacity 0.18s ease,
-        width 0.32s cubic-bezier(0.4, 0, 0.2, 1),
-        margin-left 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+transform: translateX(0);
+
+transition:
+    opacity 0.2s ease,
+    width 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-left 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+```
+
 }
 
 .tab:not(.active) .tab-title {
-    opacity: 0;
+opacity: 0;
 
-    width: 0;
+```
+width: 0;
 
-    margin-left: 0;
+margin-left: 0;
 
-    pointer-events: none;
+transform: translateX(-5px);
+
+pointer-events: none;
+```
+
 }
 
-
 /* =========================
-   X KARTY
+X KARTY
 ========================= */
 
 .close-tab {
-    margin-left: auto;
+margin-left: auto;
 
-    width: 27px;
-    height: 27px;
+```
+width: 27px;
+height: 27px;
 
-    border: none;
-    border-radius: 7px;
+border: none;
+border-radius: 7px;
 
-    background: transparent;
-    color: white;
+background: transparent;
+color: rgba(255, 255, 255, 0.84);
 
-    font-size: 18px;
-    line-height: 1;
+font-size: 18px;
+line-height: 1;
 
-    cursor: pointer;
+cursor: pointer;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+display: flex;
+align-items: center;
+justify-content: center;
 
-    flex-shrink: 0;
+flex-shrink: 0;
 
-    opacity: 1;
+opacity: 1;
 
-    transition:
-        opacity 0.18s ease,
-        width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        background 0.18s ease,
-        transform 0.18s ease;
+transition:
+    opacity 0.18s ease,
+    width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-left 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+```
+
 }
 
 .close-tab:hover {
-    background: rgba(255, 255, 255, 0.13);
+background: rgba(255, 255, 255, 0.13);
 
-    transform: scale(1.08);
+```
+color: white;
+
+transform: scale(1.08);
+```
+
 }
 
 .close-tab:active {
-    transform: scale(0.9);
+transform: scale(0.88);
 }
 
 .tab:not(.active) .close-tab {
-    opacity: 0;
+opacity: 0;
 
-    width: 0;
+```
+width: 0;
 
-    margin-left: 0;
-    padding: 0;
+margin-left: 0;
+padding: 0;
 
-    pointer-events: none;
+pointer-events: none;
+```
+
 }
 
-
 /* =========================
-   PRZYCISK +
+PRZYCISK +
 ========================= */
 
 .new-tab {
-    border: none;
+border: none;
 
-    background: transparent;
+```
+background: transparent;
 
-    color: white;
+color: rgba(255, 255, 255, 0.82);
 
-    font-size: 25px;
+font-size: 25px;
 
-    cursor: pointer;
+cursor: pointer;
 
-    flex-shrink: 0;
+flex-shrink: 0;
 
-    padding: 8px;
+padding: 8px;
 
-    border-radius: 9px;
+border-radius: 9px;
 
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
+transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.2s ease,
+    color 0.2s ease;
+```
+
 }
 
 .new-tab:hover {
-    transform: scale(1.12);
+transform: scale(1.12);
 
-    background: rgba(255, 255, 255, 0.08);
+```
+background: rgba(255, 255, 255, 0.08);
+
+color: white;
+```
+
 }
 
 .new-tab:active {
-    transform: scale(0.94);
+transform: scale(0.92);
 }
 
-
 /* =========================
-   PASEK PRZEGLĄDARKI
+PASEK PRZEGLĄDARKI
 ========================= */
 
 .browser-bar {
-    width: 100%;
-    height: 64px;
+width: 100%;
+height: 64px;
 
-    padding: 10px 14px;
+```
+padding: 10px 14px;
 
-    display: flex;
-    align-items: center;
+display: flex;
+align-items: center;
 
-    gap: 10px;
+gap: 10px;
 
-    background: rgba(8, 15, 34, 0.82);
+background:
+    linear-gradient(
+        to bottom,
+        rgba(8, 15, 34, 0.91),
+        rgba(7, 14, 31, 0.84)
+    );
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 
-    backdrop-filter: blur(10px);
+backdrop-filter: blur(14px);
+
+box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.13);
+
+position: relative;
+z-index: 15;
+```
+
 }
 
-
 /* =========================
-   NAWIGACJA
+NAWIGACJA
 ========================= */
 
 .navigation {
-    display: flex;
-    align-items: center;
+display: flex;
+align-items: center;
 
-    gap: 4px;
+```
+gap: 3px;
 
-    flex-shrink: 0;
+flex-shrink: 0;
+```
+
 }
-
 
 .nav-button,
 .menu-button {
-    width: 40px;
-    height: 40px;
+width: 40px;
+height: 40px;
 
-    border: none;
-    border-radius: 50%;
+```
+border: none;
+border-radius: 50%;
 
-    background: transparent;
+background: transparent;
 
-    color: rgba(255, 255, 255, 0.78);
+color: rgba(255, 255, 255, 0.72);
 
-    font-size: 20px;
+font-size: 20px;
 
-    cursor: pointer;
+cursor: pointer;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+display: flex;
+align-items: center;
+justify-content: center;
 
-    transition:
-        background 0.18s ease,
-        color 0.18s ease,
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
+transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease;
+```
+
 }
 
 .nav-button:hover,
 .menu-button:hover {
-    background: rgba(255, 255, 255, 0.10);
+background: rgba(255, 255, 255, 0.095);
 
-    color: white;
+```
+color: white;
 
-    transform: scale(1.08);
+transform: scale(1.08);
 
-    box-shadow:
-        0 4px 14px rgba(0, 0, 0, 0.12);
+box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.12);
+```
+
 }
 
 .nav-button:active,
 .menu-button:active {
-    transform: scale(0.91);
+transform: scale(0.91);
+
+```
+background: rgba(255, 255, 255, 0.14);
+```
+
 }
 
-
 /* =========================
-   PASEK ADRESU
+PASEK ADRESU
 ========================= */
 
 .address-container {
-    flex: 1;
+flex: 1;
 
-    height: 42px;
+```
+height: 42px;
 
-    display: flex;
-    align-items: center;
+display: flex;
+align-items: center;
 
-    padding: 0 15px;
+padding: 0 15px;
 
-    background: rgba(255, 255, 255, 0.09);
+background:
+    linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.075),
+        rgba(255, 255, 255, 0.09)
+    );
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.075);
 
-    border-radius: 21px;
+border-radius: 21px;
 
-    transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease,
-        transform 0.2s ease;
+box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
+```
+
 }
 
 .address-container:hover {
-    background: rgba(255, 255, 255, 0.11);
+background:
+linear-gradient(
+to right,
+rgba(255, 255, 255, 0.09),
+rgba(255, 255, 255, 0.105)
+);
+
+```
+border-color:
+    rgba(255, 255, 255, 0.10);
+```
+
 }
 
 .address-container:focus-within {
-    background: rgba(255, 255, 255, 0.13);
+background:
+linear-gradient(
+to right,
+rgba(255, 255, 255, 0.105),
+rgba(255, 255, 255, 0.125)
+);
 
-    border-color: rgba(255, 255, 255, 0.20);
+```
+border-color:
+    rgba(110, 160, 240, 0.30);
 
-    box-shadow:
-        0 0 0 3px rgba(80, 130, 220, 0.10);
+box-shadow:
+    0 0 0 3px rgba(80, 130, 220, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.055);
+
+transform: translateY(-1px);
+```
+
 }
 
-
 /* =========================
-   IKONA WYSZUKIWANIA
+IKONA WYSZUKIWANIA
 ========================= */
 
 .address-icon {
-    margin-right: 10px;
+margin-right: 10px;
 
-    font-size: 15px;
+```
+font-size: 15px;
 
-    opacity: 0.65;
+opacity: 0.62;
 
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
+transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+```
+
 }
 
 .address-container:focus-within .address-icon {
-    opacity: 0.9;
+opacity: 0.92;
 
-    transform: scale(1.08);
+```
+transform: scale(1.08);
+```
+
 }
 
-
 /* =========================
-   INPUT
+INPUT ADRESU
 ========================= */
 
 #address-input {
-    width: 100%;
-    height: 100%;
+width: 100%;
+height: 100%;
 
-    border: none;
-    outline: none;
+```
+border: none;
+outline: none;
 
-    background: transparent;
+background: transparent;
 
-    color: white;
+color: white;
 
-    font-size: 15px;
+font-size: 15px;
 
-    font-family: Arial, sans-serif;
+font-family: Arial, sans-serif;
+```
+
 }
 
 #address-input::placeholder {
-    color: rgba(255, 255, 255, 0.55);
+color: rgba(255, 255, 255, 0.53);
 
-    transition:
-        opacity 0.2s ease;
+```
+transition:
+    opacity 0.2s ease;
+```
+
 }
 
 #address-input:focus::placeholder {
-    opacity: 0.35;
+opacity: 0.30;
 }
 
-
 /* =========================
-   MENU
+MENU
 ========================= */
 
 .menu-button {
-    flex-shrink: 0;
+flex-shrink: 0;
 
-    font-size: 23px;
+```
+font-size: 23px;
+```
+
 }
 
-
 /* =========================
-   GŁÓWNA ZAWARTOŚĆ
+GŁÓWNA ZAWARTOŚĆ
 ========================= */
 
 main {
-    position: relative;
+position: relative;
 
-    width: 100%;
+```
+width: 100%;
 
-    min-height: calc(100vh - 132px);
+min-height: calc(100vh - 132px);
+```
+
 }
 
-
 /* =========================
-   LOGO BRUCE
+LOGO BRUCE
 ========================= */
 
 .bruce-logo {
-    position: absolute;
+position: absolute;
 
-    top: 22px;
-    left: 28px;
+```
+top: 22px;
+left: 28px;
 
-    width: 110px;
-    height: auto;
+width: 110px;
+height: auto;
 
-    object-fit: contain;
+object-fit: contain;
 
-    z-index: 10;
+z-index: 10;
 
-    user-select: none;
+user-select: none;
 
-    opacity: 0;
+opacity: 0;
 
-    animation:
-        logoAppear 0.95s cubic-bezier(0.22, 1, 0.36, 1)
-        0.1s forwards;
+animation:
+    logoAppear
+    0.95s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.1s
+    forwards;
 
-    transition:
-        transform 0.3s ease,
-        filter 0.3s ease;
+transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.3s ease;
+```
+
 }
 
-
 /* =========================
-   HOVER LOGO
+HOVER LOGO
 ========================= */
 
 .bruce-logo:hover {
-    transform: scale(1.06);
+transform: scale(1.06);
 
-    filter:
-        drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45));
+```
+filter:
+    drop-shadow(
+        0 9px 22px
+        rgba(0, 0, 0, 0.48)
+    );
+```
+
 }
 
-
 /* =========================
-   NOWA ANIMACJA LOGO BRUCE
+ANIMACJA LOGO
 ========================= */
 
 @keyframes logoAppear {
 
-    0% {
-        opacity: 0;
+```
+0% {
+    opacity: 0;
 
-        transform:
-            translateY(-32px)
-            scale(0.76);
+    transform:
+        translateY(-32px)
+        scale(0.76);
 
-        filter:
-            blur(5px)
-            drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-    }
-
-    35% {
-        opacity: 0.75;
-
-        transform:
-            translateY(-8px)
-            scale(0.91);
-
-        filter:
-            blur(1.5px)
-            drop-shadow(0 5px 12px rgba(0, 0, 0, 0.22));
-    }
-
-    58% {
-        opacity: 1;
-
-        transform:
-            translateY(5px)
-            scale(1.08);
-
-        filter:
-            blur(0)
-            drop-shadow(0 11px 23px rgba(0, 0, 0, 0.43));
-    }
-
-    72% {
-        transform:
-            translateY(-3px)
-            scale(0.985);
-
-        filter:
-            blur(0)
-            drop-shadow(0 8px 19px rgba(0, 0, 0, 0.39));
-    }
-
-    86% {
-        transform:
-            translateY(1px)
-            scale(1.025);
-
-        filter:
-            drop-shadow(0 8px 19px rgba(0, 0, 0, 0.40));
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-        filter:
-            blur(0)
-            drop-shadow(0 7px 18px rgba(0, 0, 0, 0.38));
-    }
+    filter:
+        blur(5px)
+        drop-shadow(
+            0 0 0
+            rgba(0, 0, 0, 0)
+        );
 }
 
+35% {
+    opacity: 0.75;
+
+    transform:
+        translateY(-8px)
+        scale(0.91);
+
+    filter:
+        blur(1.5px)
+        drop-shadow(
+            0 5px 12px
+            rgba(0, 0, 0, 0.22)
+        );
+}
+
+58% {
+    opacity: 1;
+
+    transform:
+        translateY(5px)
+        scale(1.08);
+
+    filter:
+        blur(0)
+        drop-shadow(
+            0 11px 23px
+            rgba(0, 0, 0, 0.43)
+        );
+}
+
+72% {
+    transform:
+        translateY(-3px)
+        scale(0.985);
+
+    filter:
+        blur(0)
+        drop-shadow(
+            0 8px 19px
+            rgba(0, 0, 0, 0.39)
+        );
+}
+
+86% {
+    transform:
+        translateY(1px)
+        scale(1.025);
+
+    filter:
+        drop-shadow(
+            0 8px 19px
+            rgba(0, 0, 0, 0.40)
+        );
+}
+
+100% {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    filter:
+        blur(0)
+        drop-shadow(
+            0 7px 18px
+            rgba(0, 0, 0, 0.38)
+        );
+}
+```
+
+}
 
 /* =========================
-   NOWA KARTA
+NOWA KARTA
 ========================= */
 
 .new-tab-page {
-    width: 100%;
+width: 100%;
 
-    min-height: calc(100vh - 132px);
+```
+min-height: calc(100vh - 132px);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+display: flex;
+align-items: center;
+justify-content: center;
 
-    padding: 40px;
+padding: 40px;
+
+position: relative;
+```
+
 }
 
+/* =========================
+ŚWIATŁO ZA PANELEM
+========================= */
+
+.new-tab-page::before {
+content: "";
+
+```
+position: absolute;
+
+width: 620px;
+height: 360px;
+
+left: 50%;
+top: 50%;
+
+transform:
+    translate(-50%, -50%);
+
+background:
+    radial-gradient(
+        ellipse,
+        rgba(69, 119, 205, 0.18) 0%,
+        rgba(69, 119, 205, 0.08) 38%,
+        transparent 72%
+    );
+
+filter: blur(25px);
+
+pointer-events: none;
+
+opacity: 0.8;
+
+animation:
+    backgroundGlow
+    5s
+    ease-in-out
+    infinite;
+```
+
+}
+
+@keyframes backgroundGlow {
+
+```
+0%,
+100% {
+    transform:
+        translate(-50%, -50%)
+        scale(0.96);
+
+    opacity: 0.65;
+}
+
+50% {
+    transform:
+        translate(-50%, -50%)
+        scale(1.04);
+
+    opacity: 0.9;
+}
+```
+
+}
 
 /* =========================
-   PANEL GOOGLE
+PANEL GOOGLE
 ========================= */
 
 .google-card {
-    width: 680px;
-    max-width: 90%;
+width: 680px;
+max-width: 90%;
 
-    min-height: 330px;
+```
+min-height: 330px;
 
-    padding: 65px 60px;
+padding: 65px 60px;
 
-    background: rgba(8, 15, 34, 0.58);
+position: relative;
 
-    border: 1px solid rgba(255, 255, 255, 0.10);
+overflow: hidden;
 
-    border-radius: 28px;
+background:
+    linear-gradient(
+        145deg,
+        rgba(18, 34, 68, 0.72),
+        rgba(7, 14, 31, 0.66)
+    );
 
-    backdrop-filter: blur(16px);
+border: 1px solid rgba(255, 255, 255, 0.11);
 
-    box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.30);
+border-radius: 28px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+backdrop-filter: blur(20px);
 
-    opacity: 0;
+box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.32),
+    0 0 45px rgba(55, 105, 190, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
 
-    animation:
-        googleCardAppear 0.65s cubic-bezier(0.22, 1, 0.36, 1)
-        0.05s forwards;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 
-    transition:
-        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-        background 0.25s ease,
-        box-shadow 0.3s ease;
+opacity: 0;
+
+animation:
+    googleCardAppear
+    0.7s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.05s
+    forwards;
+
+transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s ease,
+    box-shadow 0.35s ease,
+    border-color 0.3s ease;
+```
+
+}
+
+/* światło na górnej krawędzi */
+
+.google-card::before {
+content: "";
+
+```
+position: absolute;
+
+top: 0;
+left: 12%;
+right: 12%;
+
+height: 1px;
+
+background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(150, 195, 255, 0.42),
+        transparent
+    );
+
+opacity: 0.65;
+
+transition:
+    opacity 0.3s ease;
+```
+
+}
+
+/* delikatna poświata wewnątrz */
+
+.google-card::after {
+content: "";
+
+```
+position: absolute;
+
+width: 260px;
+height: 180px;
+
+top: -120px;
+right: -80px;
+
+background:
+    radial-gradient(
+        circle,
+        rgba(100, 155, 235, 0.16),
+        transparent 70%
+    );
+
+filter: blur(10px);
+
+pointer-events: none;
+```
+
 }
 
 .google-card:hover {
-    transform: translateY(-4px);
+transform: translateY(-5px);
 
-    background: rgba(8, 15, 34, 0.68);
+```
+background:
+    linear-gradient(
+        145deg,
+        rgba(20, 38, 76, 0.77),
+        rgba(8, 16, 35, 0.70)
+    );
 
-    box-shadow:
-        0 30px 90px rgba(0, 0, 0, 0.35);
+border-color:
+    rgba(120, 170, 245, 0.17);
+
+box-shadow:
+    0 32px 95px rgba(0, 0, 0, 0.38),
+    0 0 55px rgba(55, 105, 190, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+```
+
 }
 
+.google-card:hover::before {
+opacity: 1;
+}
 
 /* =========================
-   ANIMACJA PANELU GOOGLE
+ANIMACJA PANELU
 ========================= */
 
 @keyframes googleCardAppear {
 
-    from {
-        opacity: 0;
+```
+0% {
+    opacity: 0;
 
-        transform:
-            translateY(18px)
-            scale(0.97);
-    }
+    transform:
+        translateY(22px)
+        scale(0.965);
 
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
+    filter: blur(3px);
 }
 
+65% {
+    opacity: 1;
+
+    transform:
+        translateY(-2px)
+        scale(1.008);
+
+    filter: blur(0);
+}
+
+100% {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    filter: blur(0);
+}
+```
+
+}
 
 /* =========================
-   GOOGLE
+GOOGLE
 ========================= */
 
 .google-logo {
-    font-size: 64px;
+font-size: 64px;
 
-    font-weight: 600;
+```
+font-weight: 600;
 
-    letter-spacing: -3px;
+letter-spacing: -3px;
 
-    margin-bottom: 38px;
+margin-bottom: 38px;
 
-    user-select: none;
+user-select: none;
 
-    transition:
-        transform 0.25s ease,
-        opacity 0.25s ease;
+position: relative;
+z-index: 2;
 
-    animation:
-        googleLogoAppear 0.65s cubic-bezier(0.22, 1, 0.36, 1)
-        0.18s both;
+text-shadow:
+    0 5px 22px rgba(0, 0, 0, 0.22);
+
+transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease,
+    text-shadow 0.3s ease;
+
+animation:
+    googleLogoAppear
+    0.7s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    0.18s
+    both;
+```
+
 }
 
 .google-card:hover .google-logo {
-    transform: translateY(-2px);
+transform:
+translateY(-3px)
+scale(1.015);
+
+```
+text-shadow:
+    0 7px 25px rgba(0, 0, 0, 0.30);
+```
+
 }
 
-
 /* =========================
-   ANIMACJA NAPISU GOOGLE
+ANIMACJA NAPISU GOOGLE
 ========================= */
 
 @keyframes googleLogoAppear {
 
-    0% {
-        opacity: 0;
+```
+0% {
+    opacity: 0;
 
-        transform:
-            translateY(7px)
-            scale(0.97);
-    }
+    transform:
+        translateY(9px)
+        scale(0.95);
 
-    45% {
-        opacity: 0.75;
-
-        transform:
-            translateY(-2px)
-            scale(1.01);
-    }
-
-    75% {
-        transform:
-            translateY(1px)
-            scale(0.995);
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
+    filter: blur(2px);
 }
 
+50% {
+    opacity: 0.8;
+
+    transform:
+        translateY(-2px)
+        scale(1.015);
+
+    filter: blur(0);
+}
+
+75% {
+    transform:
+        translateY(1px)
+        scale(0.995);
+}
+
+100% {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+```
+
+}
 
 /* =========================
-   WYSZUKIWARKA GOOGLE
+WYSZUKIWARKA GOOGLE
 ========================= */
 
 .google-search {
-    width: 100%;
-    height: 62px;
+width: 100%;
+height: 62px;
 
-    display: flex;
-    align-items: center;
+```
+display: flex;
+align-items: center;
 
-    padding: 0 22px;
+padding: 0 22px;
 
-    background: rgba(255, 255, 255, 0.10);
+position: relative;
+z-index: 2;
 
-    border: 1px solid rgba(255, 255, 255, 0.10);
+background:
+    linear-gradient(
+        100deg,
+        rgba(255, 255, 255, 0.075),
+        rgba(255, 255, 255, 0.105)
+    );
 
-    border-radius: 31px;
+border: 1px solid rgba(255, 255, 255, 0.10);
 
-    transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease,
-        transform 0.2s ease;
+border-radius: 31px;
+
+box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 8px 25px rgba(0, 0, 0, 0.08);
+
+transition:
+    background 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.3s ease,
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+```
+
 }
 
 .google-search:hover {
-    background: rgba(255, 255, 255, 0.12);
+background:
+linear-gradient(
+100deg,
+rgba(255, 255, 255, 0.095),
+rgba(255, 255, 255, 0.125)
+);
+
+```
+border-color:
+    rgba(255, 255, 255, 0.13);
+
+box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 10px 28px rgba(0, 0, 0, 0.10);
+
+transform:
+    translateY(-1px);
+```
+
 }
 
 .google-search:focus-within {
-    background: rgba(255, 255, 255, 0.14);
+background:
+linear-gradient(
+100deg,
+rgba(255, 255, 255, 0.11),
+rgba(255, 255, 255, 0.14)
+);
 
-    border-color: rgba(255, 255, 255, 0.20);
+```
+border-color:
+    rgba(105, 160, 245, 0.32);
 
-    box-shadow:
-        0 0 0 4px rgba(80, 130, 220, 0.13);
+box-shadow:
+    0 0 0 4px rgba(80, 130, 220, 0.12),
+    0 10px 30px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
-    transform: translateY(-1px);
+transform:
+    translateY(-2px);
+```
+
 }
 
-
 /* =========================
-   IKONA GOOGLE
+IKONA GOOGLE
 ========================= */
 
 .google-search span {
-    font-size: 18px;
+font-size: 18px;
 
-    opacity: 0.65;
+```
+opacity: 0.62;
 
-    margin-right: 13px;
+margin-right: 13px;
 
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
+transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.22s ease;
+```
+
+}
+
+.google-search:hover span {
+opacity: 0.78;
 }
 
 .google-search:focus-within span {
-    opacity: 0.9;
+opacity: 0.95;
 
-    transform: scale(1.08);
+```
+transform:
+    scale(1.10)
+    rotate(-4deg);
+```
+
 }
 
-
 /* =========================
-   INPUT GOOGLE
+INPUT GOOGLE
 ========================= */
 
 #google-input {
-    width: 100%;
-    height: 100%;
+width: 100%;
+height: 100%;
 
-    border: none;
-    outline: none;
+```
+border: none;
+outline: none;
 
-    background: transparent;
+background: transparent;
 
-    color: white;
+color: white;
 
-    font-size: 18px;
+font-size: 18px;
 
-    font-family: Arial, sans-serif;
+font-family: Arial, sans-serif;
+```
+
 }
 
 #google-input::placeholder {
-    color: rgba(255, 255, 255, 0.52);
+color: rgba(255, 255, 255, 0.52);
 
-    transition:
-        opacity 0.2s ease;
+```
+transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+```
+
 }
 
 #google-input:focus::placeholder {
-    opacity: 0.3;
+opacity: 0.25;
+
+```
+transform:
+    translateX(3px);
+```
+
 }
 
-
 /* =========================
-   PŁYNNOŚĆ
+PŁYNNOŚĆ
 ========================= */
 
 button,
 input {
-    -webkit-tap-highlight-color: transparent;
+-webkit-tap-highlight-color: transparent;
 }
 
+/* =========================
+RESPONSYWNOŚĆ
+========================= */
+
+@media (max-width: 700px) {
+
+```
+.tabs {
+    padding: 0 8px;
+    gap: 5px;
+}
+
+.tab.active {
+    width: 170px;
+    min-width: 170px;
+    max-width: 170px;
+
+    flex-basis: 170px;
+}
+
+.browser-bar {
+    padding: 10px 8px;
+    gap: 6px;
+}
+
+.nav-button,
+.menu-button {
+    width: 36px;
+    height: 36px;
+}
+
+.address-container {
+    height: 40px;
+}
+
+.new-tab-page {
+    padding: 25px 15px;
+}
+
+.new-tab-page::before {
+    width: 90%;
+    height: 300px;
+}
+
+.google-card {
+    width: 100%;
+
+    max-width: 520px;
+
+    min-height: 300px;
+
+    padding: 50px 30px;
+
+    border-radius: 24px;
+}
+
+.google-logo {
+    font-size: 52px;
+
+    margin-bottom: 30px;
+}
+
+.google-search {
+    height: 56px;
+}
+```
+
+}
 
 /* =========================
-   REDUKCJA ANIMACJI
+REDUKCJA ANIMACJI
 ========================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+```
+*,
+*::before,
+*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
 }
+```
+
+}
+
+```
+
+I tak — **logo Bruce zostaje dokładnie tym, które już masz**. Nie dodajemy żadnego nowego logo ani nie zmieniamy HTML. Teraz możemy przejść element po elemencie i doprowadzić UI do naprawdę mocnego poziomu.
 ```
