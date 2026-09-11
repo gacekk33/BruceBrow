@@ -105,7 +105,7 @@ body {
 }
 
 
-/* Hover */
+/* Hover karty */
 
 .tab:hover {
     background: #101a35;
@@ -127,12 +127,13 @@ body {
     height: 52px;
 
     background: #29477f;
+
     border-color: #3c65a8;
 
     transform: translateY(3px);
 
     box-shadow:
-        0 -4px 18px rgba(40, 90, 170, 0.12);
+        0 -4px 18px rgba(40, 90, 170, 0.14);
 }
 
 .tab.active:hover {
@@ -160,7 +161,7 @@ body {
 
 
 /* =========================
-   IKONA
+   IKONA KARTY
 ========================= */
 
 .tab-icon {
@@ -169,6 +170,8 @@ body {
     justify-content: center;
 
     flex-shrink: 0;
+
+    width: 26px;
 
     font-size: 14px;
     font-weight: bold;
@@ -186,7 +189,7 @@ body {
 
 
 /* =========================
-   NAZWA
+   NAZWA KARTY
 ========================= */
 
 .tab-title {
@@ -219,7 +222,7 @@ body {
 
 
 /* =========================
-   PRZYCISK X
+   X KARTY
 ========================= */
 
 .close-tab {
@@ -251,14 +254,18 @@ body {
         opacity 0.18s ease,
         width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        background 0.2s ease,
-        transform 0.2s ease;
+        background 0.18s ease,
+        transform 0.18s ease;
 }
 
 .close-tab:hover {
     background: rgba(255, 255, 255, 0.13);
 
     transform: scale(1.08);
+}
+
+.close-tab:active {
+    transform: scale(0.9);
 }
 
 .tab:not(.active) .close-tab {
@@ -279,6 +286,7 @@ body {
 
 .new-tab {
     border: none;
+
     background: transparent;
 
     color: white;
@@ -295,8 +303,7 @@ body {
 
     transition:
         transform 0.2s ease,
-        background 0.2s ease,
-        opacity 0.2s ease;
+        background 0.2s ease;
 }
 
 .new-tab:hover {
@@ -341,23 +348,25 @@ body {
     display: flex;
     align-items: center;
 
-    gap: 3px;
+    gap: 4px;
 
     flex-shrink: 0;
 }
 
 
+/* Przyciski ← → ⟳ */
+
 .nav-button,
 .menu-button {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
 
     border: none;
     border-radius: 50%;
 
     background: transparent;
 
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.78);
 
     font-size: 20px;
 
@@ -368,10 +377,14 @@ body {
     justify-content: center;
 
     transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
 }
+
+
+/* Hover */
 
 .nav-button:hover,
 .menu-button:hover {
@@ -379,12 +392,18 @@ body {
 
     color: white;
 
-    transform: scale(1.06);
+    transform: scale(1.08);
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.12);
 }
+
+
+/* Kliknięcie */
 
 .nav-button:active,
 .menu-button:active {
-    transform: scale(0.92);
+    transform: scale(0.91);
 }
 
 
@@ -429,9 +448,7 @@ body {
 }
 
 
-/* =========================
-   IKONA WYSZUKIWANIA
-========================= */
+/* Ikona */
 
 .address-icon {
     margin-right: 10px;
@@ -452,9 +469,7 @@ body {
 }
 
 
-/* =========================
-   INPUT
-========================= */
+/* Input */
 
 #address-input {
     width: 100%;
@@ -546,8 +561,6 @@ main {
 }
 
 
-/* Animacja logo */
-
 @keyframes logoAppear {
 
     from {
@@ -635,8 +648,6 @@ main {
 }
 
 
-/* Animacja panelu */
-
 @keyframes googleCardAppear {
 
     from {
@@ -658,7 +669,7 @@ main {
 
 
 /* =========================
-   GOOGLE
+   GOOGLE LOGO
 ========================= */
 
 .google-logo {
@@ -724,7 +735,7 @@ main {
 }
 
 
-/* Ikona */
+/* Ikona Google */
 
 .google-search span {
     font-size: 18px;
@@ -787,7 +798,9 @@ input {
 }
 
 
-/* Szacunek dla ustawień redukcji animacji */
+/* =========================
+   REDUKCJA ANIMACJI
+========================= */
 
 @media (prefers-reduced-motion: reduce) {
 
