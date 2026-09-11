@@ -543,15 +543,18 @@ main {
         0.1s forwards;
 
     transition:
-        transform 0.25s ease,
-        filter 0.25s ease;
+        transform 0.3s ease,
+        filter 0.3s ease;
 }
 
+
+/* Hover logo */
+
 .bruce-logo:hover {
-    transform: scale(1.04);
+    transform: scale(1.06);
 
     filter:
-        drop-shadow(0 5px 15px rgba(0, 0, 0, 0.25));
+        drop-shadow(0 7px 18px rgba(0, 0, 0, 0.42));
 }
 
 
@@ -565,29 +568,34 @@ main {
         opacity: 0;
 
         transform:
-            translateY(-28px)
-            scale(0.78)
-            rotate(-3deg);
+            translateY(-22px)
+            scale(0.82);
 
-        filter: blur(6px);
+        filter:
+            blur(5px)
+            drop-shadow(0 0 0 rgba(0, 0, 0, 0));
     }
 
-    60% {
+    55% {
         opacity: 1;
 
         transform:
             translateY(5px)
-            scale(1.05)
-            rotate(1deg);
+            scale(1.04);
 
-        filter: blur(0);
+        filter:
+            blur(0)
+            drop-shadow(0 8px 18px rgba(0, 0, 0, 0.38));
     }
 
-    80% {
+    75% {
         transform:
             translateY(-2px)
-            scale(0.98)
-            rotate(0deg);
+            scale(0.985);
+
+        filter:
+            blur(0)
+            drop-shadow(0 7px 17px rgba(0, 0, 0, 0.36));
     }
 
     100% {
@@ -595,10 +603,11 @@ main {
 
         transform:
             translateY(0)
-            scale(1)
-            rotate(0deg);
+            scale(1);
 
-        filter: blur(0);
+        filter:
+            blur(0)
+            drop-shadow(0 6px 16px rgba(0, 0, 0, 0.34));
     }
 }
 
@@ -622,6 +631,7 @@ main {
 
 /* =========================
    PANEL GOOGLE
+   NIE ZMIENIAMY WYGLĄDU
 ========================= */
 
 .google-card {
@@ -671,7 +681,7 @@ main {
 
 
 /* =========================
-   ANIMACJA PANELU GOOGLE
+   ANIMACJA PANELU
 ========================= */
 
 @keyframes googleCardAppear {
@@ -709,21 +719,16 @@ main {
 
     user-select: none;
 
-    opacity: 0;
-
-    animation:
-        googleLogoAppear 0.7s cubic-bezier(0.22, 1, 0.36, 1)
-        0.15s both;
-
     transition:
         transform 0.25s ease,
         opacity 0.25s ease;
 }
 
+
+/* Delikatny hover — bez zmiany wyglądu */
+
 .google-card:hover .google-logo {
-    transform:
-        translateY(-3px)
-        scale(1.02);
+    transform: translateY(-2px);
 }
 
 
@@ -731,26 +736,42 @@ main {
    ANIMACJA NAPISU GOOGLE
 ========================= */
 
+.google-logo {
+    animation:
+        googleLogoAppear 0.65s cubic-bezier(0.22, 1, 0.36, 1)
+        0.18s both;
+}
+
 @keyframes googleLogoAppear {
 
-    from {
+    0% {
         opacity: 0;
 
         transform:
-            translateY(12px)
-            scale(0.94);
-
-        filter: blur(4px);
+            translateY(7px)
+            scale(0.97);
     }
 
-    to {
+    45% {
+        opacity: 0.75;
+
+        transform:
+            translateY(-2px)
+            scale(1.01);
+    }
+
+    75% {
+        transform:
+            translateY(1px)
+            scale(0.995);
+    }
+
+    100% {
         opacity: 1;
 
         transform:
             translateY(0)
             scale(1);
-
-        filter: blur(0);
     }
 }
 
@@ -782,5 +803,98 @@ main {
 }
 
 .google-search:hover {
-    background: rgba(
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.google-search:focus-within {
+    background: rgba(255, 255, 255, 0.14);
+
+    border-color: rgba(255, 255, 255, 0.20);
+
+    box-shadow:
+        0 0 0 4px rgba(80, 130, 220, 0.13);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   IKONA GOOGLE
+========================= */
+
+.google-search span {
+    font-size: 18px;
+
+    opacity: 0.65;
+
+    margin-right: 13px;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.google-search:focus-within span {
+    opacity: 0.9;
+
+    transform: scale(1.08);
+}
+
+
+/* =========================
+   INPUT GOOGLE
+========================= */
+
+#google-input {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-family: Arial, sans-serif;
+}
+
+#google-input::placeholder {
+    color: rgba(255, 255, 255, 0.52);
+
+    transition:
+        opacity 0.2s ease;
+}
+
+#google-input:focus::placeholder {
+    opacity: 0.3;
+}
+
+
+/* =========================
+   PŁYNNOŚĆ
+========================= */
+
+button,
+input {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================
+   REDUKCJA ANIMACJI
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
 ```
